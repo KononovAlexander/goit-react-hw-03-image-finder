@@ -1,4 +1,5 @@
-import { Header, Form, FormBtn, Input } from "./Searchbar.styled"
+import PropTypes from "prop-types";
+import { Header, Form, FormBtn, Input } from "./Searchbar.styled";
 import {Component} from 'react';
 import { FaSearch } from 'react-icons/fa';
 
@@ -37,3 +38,7 @@ export class Searchbar extends Component {
   </Header>)
   }
 }
+
+Searchbar.propTypes = {
+ onSubmit:PropTypes.func 
+} 
