@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Component } from 'react';
 import {GalleryItem, GallaryImg} from './ImageGalleryItem.styled';
-import{ModalWindow} from 'components/Modal/Modal'
+import{Modal} from 'components/Modal/Modal'
 
 export class ImageGalleryItem extends Component {
     state = {
@@ -26,7 +26,7 @@ export class ImageGalleryItem extends Component {
                 return(
                     <GalleryItem >
                     <GallaryImg src={src} alt={alt} onClick={this.modalToggle} />
-                    {this.state.showModal && <ModalWindow src={largeImg} alt={alt} onClick={this.modalToggle}/>}
+                    {this.state.showModal && <Modal src={largeImg} alt={alt} onClick={this.modalToggle}/>}
                 </GalleryItem>
             )        
         }

@@ -1,17 +1,17 @@
 import PropTypes from "prop-types";
-import {Overlay, Modal} from './Modal.styled'
+import css from './Modal.module.css'
 
-export const ModalWindow = ({src, onClick, alt}) => {
+export const Modal = ({src, onClick, alt}) => {
 return(
-        <Overlay onClick={onClick}>
-          <Modal>
+        <div className={css.overlay} onClick={onClick}>
+          <div className={css.modal}>
             <img src={src} alt={alt} />
-          </Modal>
-        </Overlay>
+          </div>
+        </div>
         )
 }
 
-ModalWindow.propTypes = {
+Modal.propTypes = {
   onClick:PropTypes.func,
   alt:PropTypes.string,
   src:PropTypes.string   

@@ -9,6 +9,6 @@ const basicURL = 'https://pixabay.com/api/';
   .then(response => response.json())
   .then(data => {return data})
   
-  return response.hits;
+  return response;
 
 }

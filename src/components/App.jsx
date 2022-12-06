@@ -12,7 +12,8 @@ export class App extends React.Component {
     imgsSearch:'',
     perPage:'12',
     page: 1,
-    isLoad:false
+    isLoad:false,
+    showButton:false
   }
   async  componentDidUpdate(prevProps , prevState) {
 
@@ -20,9 +21,9 @@ export class App extends React.Component {
       prevState.page !== this.state.page) {
       try{
         const newPictures = await  API(this.state.imgsSearch, this.state.perPage, this.state.page);
-
+        this.showButton (newPictures.totalHits)
         this.setState(prevState =>({
-          pictures:[...prevState.pictures, ...newPictures],  
+          pictures:[...prevState.pictures, ...newPictures.hits],  
           isLoad:false        
         }))
         
@@ -31,6 +32,13 @@ export class App extends React.Component {
         console.log('error: ', error);
       }
     }
+  }
+
+  showButton (pictsArr) {
+    this.state.page !== Math.ceil(pictsArr / 12) ? 
+      this.setState(() => {return {showButton:true}}) :
+      this.setState(() => {return {showButton:false}}) 
+    
   }
   onHandleSubmit = (imgsSearch) => {
     
@@ -61,7 +69,7 @@ export class App extends React.Component {
         <Searchbar onSubmit = {this.onHandleSubmit}/>
         <ImageGallery  images={this.state.pictures} />
         {this.state.isLoad && <Loader/>}
-        {this.state.pictures.length !== 0 &&
+        { this.state.showButton &&
           <LoadMoreBtn onClick={this.loadMore}/>
         }
     </div>
